@@ -1,4 +1,6 @@
-﻿@inherits UmbracoViewPage<IPublishedContent>
+﻿@using UmbLib.Models
+@using Smidge.TagHelpers
+@inherits UmbracoViewPage<IPublishedContent>
 
 @{
     var homePage = Model.AncestorOrSelf<Home>();
