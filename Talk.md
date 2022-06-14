@@ -15,9 +15,19 @@ Run It
 
 ## Rebuild
 
+Copy Dockerfile
+
     docker build --tag=umbweb ./UmbWeb
 
     docker run --name umbweb -p 8000:80 -v umb_media:/app/wwwroot/media -v umb_logs:/app/umbraco/Logs -e ASPNETCORE_ENVIRONMENT='Staging' --network=umbNet -d umbweb 
+
+## Build Blazor
+
+Copy Projet
+
+    docker build --tag=umblazor .\UmBlazor    
+
+    docker run --name umblazor -p 8002:80 --network=umbNet -d umblazor
 
 
 ## Remove old images and Run
