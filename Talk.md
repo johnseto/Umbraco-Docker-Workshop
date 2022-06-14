@@ -21,6 +21,8 @@ Copy Dockerfile
 
     docker run --name umbweb -p 8000:80 -v umb_media:/app/wwwroot/media -v umb_logs:/app/umbraco/Logs -e ASPNETCORE_ENVIRONMENT='Staging' --network=umbNet -d umbweb 
 
+    http://localhost:8000/Umbraco/Api/MyApp/GetBlogSummaries
+
 ## Build Blazor
 
 Copy Projet
