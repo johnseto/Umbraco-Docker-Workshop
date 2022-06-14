@@ -25,13 +25,11 @@ Copy Dockerfile
 
 Copy Projet
 
-    docker build --tag=umblazor .\UmBlazor    
-
-    docker run --name umblazor -p 8002:80 --network=umbNet -d umblazor
-
 
 ## Remove old images and Run
 
     docker rm -f umblazor umbweb umbdata
+
+    docker compose build    
 
     docker compose up -d

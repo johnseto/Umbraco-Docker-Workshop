@@ -14,26 +14,7 @@ services:
     networks:
       - umbnet
 
-  # This is the web container. It exposes the port 80, and stored media and Umbraco logs on
-  # a volume so they are accessable outside the container.
-  umbweb_backend:
-    container_name: umbweb_backend
-    build:
-      context: ./UmbWeb
-    volumes:
-      - umb_media:/app/wwwroot/media
-      - umb_logs:/app/umbraco/Logs
-    restart: always
-    environment:
-     - ASPNETCORE_ENVIRONMENT=Production
-    # This is the external port the website will be visible from : http://localhost:5080/
-    # The Umbraco URL is : http://localhost:5080/umbraco
-    ports:
-      - "5080:80"
-    depends_on:
-      - umbdata
-    networks:
-      - umbnet        
+      
 
 
   # This is the 2nd web container. It exposes the port 80, and stored media and Umbraco logs on
@@ -52,7 +33,7 @@ services:
     # This is the external port the website will be visible from : http://localhost:5081/
     # The Umbraco URL is : http://localhost:5081/umbraco
     ports:
-      - "5081:80"
+      - "5080:80"
     depends_on:
       - umbdata
     networks:
