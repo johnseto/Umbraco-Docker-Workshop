@@ -17,10 +17,10 @@ services:
       
 
 
-  # This is the 2nd web container. It exposes the port 80, and stored media and Umbraco logs on
+  # This is the api container. It exposes the port 80, and stored media and Umbraco logs on
   # a volume so they are accessable outside the container.
-  umbweb_frontend:
-    container_name: umbweb_frontend
+  umbraco_api:
+    container_name: umbraco_api
     build:
       context: ./UmbWeb
       dockerfile: Dockerfile
@@ -37,10 +37,57 @@ services:
     depends_on:
       - umbdata
     networks:
-      - umbnet        
+      - umbnet      
 
 
-  # This is the blazor container. It exposes the port 80 and accesses the umbweb_frontend container
+
+  # This is the web container. It exposes the port 80, and stored media and Umbraco logs on
+  # a volume so they are accessable outside the container.
+  umbraco_web:
+    container_name: umbraco_web
+    build:
+      context: ./UmbWeb
+      dockerfile: Dockerfile
+    volumes:
+      - umb_media:/app/wwwroot/media
+      - umb_logs:/app/umbraco/Logs
+    restart: always
+    environment:
+     - ASPNETCORE_ENVIRONMENT=Production
+    # This is the external port the website will be visible from : http://localhost:5081/
+    # The Umbraco URL is : http://localhost:5081/umbraco
+    ports:
+      - "5082:80"
+    depends_on:
+      - umbdata
+    networks:
+      - umbnet      
+
+
+
+  # This is the 2nd web container. It exposes the port 80, and stored media and Umbraco logs on
+  # a volume so they are accessable outside the container.
+  umbraco_web2:
+    container_name: umbraco_web2
+    build:
+      context: ./UmbWeb
+      dockerfile: Dockerfile
+    volumes:
+      - umb_media:/app/wwwroot/media
+      - umb_logs:/app/umbraco/Logs
+    restart: always
+    environment:
+     - ASPNETCORE_ENVIRONMENT=Production
+    # This is the external port the website will be visible from : http://localhost:5081/
+    # The Umbraco URL is : http://localhost:5081/umbraco
+    ports:
+      - "5082:80"
+    depends_on:
+      - umbdata
+    networks:
+      - umbnet      
+
+  # This is the blazor container. It exposes the port 80 and accesses the umbraco_api container
   # to load the blog summary content.
   umblazor:
     container_name: umblazor
@@ -51,9 +98,9 @@ services:
     environment:
      - ASPNETCORE_ENVIRONMENT=Production
     ports:
-      - "5082:80"
+      - "5081:80"
     depends_on:
-      - umbweb_frontend
+      - umbraco_api
     networks:
       - umbnet    
 
