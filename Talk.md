@@ -30,6 +30,4 @@ Copy Projet
 
     docker rm -f umbweb umbweb2 umbweb3 umbweb4 umbdata
 
-    docker compose build    
-
-    docker compose up -d
+    docker compose up -d --build
