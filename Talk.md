@@ -4,14 +4,6 @@
 
     docker run --name umbdata -p 1433:1433 --volume sqlFiles:/var/opt/mssql --network=umbNet -d umbdata
  
-## Website
-
-Run It
-
-    dotnet run --project UmbWeb
-
- 
-
 
 ## Rebuild
 
