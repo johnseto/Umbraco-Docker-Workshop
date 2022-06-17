@@ -233,7 +233,7 @@ Todo: Image of what it will look like after
 
 ## 3.3 Building the Umbraco Site image, setting a network and running it
 
-Once the Dockerfile exists, we need to create a configuration which lets the website contianer connect to the database container. 
+Once the Dockerfile exists, we need to create a configuration which lets the website container connect to the database container. 
 
 **Action:** Create a copy of the appsettings.Development.json called appsettings.Staging.json, and in that file ensure the connectionstring is set-up to connect to umbdata as a container name.
 
