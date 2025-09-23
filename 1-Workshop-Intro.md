@@ -6,7 +6,7 @@ The folders which are in this workshop are:
 
 - **Files** - This folder contains pre-created files which will be used in this workshop to save you typing everything out manually
 - **Media** - The images used in this workshop are stored in there
-- **Workshop Complete** - This folder contains a fully complete version of the workshop which can be used for reference in case you run into problems, in a zipped up file. No cheating - you won't learn if you do, but it's a useful guide for reference if you get stuck 🙂 
+- **Workshop Complete** - This folder contains a fully complete version of the workshop which can be used for reference in case you run into problems, in a zipped up file. No cheating - you won't learn if you do, but it's a useful guide for reference if you get stuck 🙂
 - **Workshop** - This will be the active folder where the workshop is being run from, and all files you create and edit will be in this folder. This will be created in the next step.
 
 
@@ -38,6 +38,11 @@ If it shows CRLF, click on the label and at the top you can change it to LF.
 - **Line endings issues:** Ensure all scripts and Dockerfiles use LF line endings, not CRLF.
 - **Cannot connect to database:** Double-check the username (`sa`), password (`SQL_PassW0rd@1234`), and port (`1433`). Make sure the container is running.
 
+## WSL Troubleshooting
+
+- This issue when WSL is broken after upgrade
+   - https://www.reddit.com/r/wsl2/comments/1lonesk/win_11_wsl2_looking_for_cprogram/
+
 ## Build timeout fails
 
 Sometimes when building images, if you can't download the base images, you may get a timeout error. If this happens, you can try the following:
@@ -45,7 +50,7 @@ Sometimes when building images, if you can't download the base images, you may g
 ```bash
 # This will pre-cache the images used to build the database container.
 docker pull mcr.microsoft.com/mssql/server:2022-latest
-# This will pre-cache the images used to build the Umbraco container. 
+# This will pre-cache the images used to build the Umbraco container.
 docker pull mcr.microsoft.com/dotnet/sdk:8.0
 docker pull mcr.microsoft.com/dotnet/aspnet:8.0
 
